@@ -2,15 +2,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-
+    id("kotlin-android")
+    id("com.google.devtools.ksp") version "1.9.10-1.0.13"
 
 
 }
 
 android {
     namespace = "com.example.tracktask"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.tracktask"
@@ -38,60 +38,31 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    packagingOptions{
-        exclude ("META-INF/atomicfu.kotlin_module")
-    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
 }
 
 dependencies {
+    val appcompat_version = "1.6.1"
+    val constraintlayout_version = "2.1.4"
+    val core_ktx_version = "1.12.0"
+    val lifecycle_version = "2.6.2"
+    val material_version = "1.9.0"
+    val room_version = "2.5.2"
 
-    implementation("androidx.room:room-common:2.5.2")
-    val activityVersion = "1.4.0"
-    val appCompatVersion = "1.4.0"
-    val constraintLayoutVersion = "2.1.2"
-     val coreTestingVersion = "2.1.0"
-    val coroutines = "1.5.2"
-   val lifecycleVersion = "2.4.0"
-   val materialVersion = "1.4.0"
-   val roomVersion = "2.3.0"
-    // testing
-  val  junitVersion = "4.13.2"
-   val espressoVersion = "3.4.0"
-     val androidxJunitVersion = "1.1.3"
+    implementation("androidx.activity:activity-ktx:1.7.2")
+    implementation ("androidx.appcompat:appcompat:$appcompat_version")
+    implementation ("androidx.constraintlayout:constraintlayout:$constraintlayout_version")
+    implementation ("androidx.core:core-ktx:$core_ktx_version")
+    implementation ("com.google.android.material:material:$material_version")
 
-    //implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31")
-    implementation ("androidx.appcompat:appcompat:$appCompatVersion")
-    implementation ("androidx.activity:activity-ktx:$activityVersion")
+    // Lifecycle libraries
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
 
-    // Dependencies for working with Architecture components
-    // You'll probably have to update the version numbers in build.gradle (Project)
-
-    // Room components
-    implementation ("androidx.room:room-ktx:$roomVersion")
-    kapt ("androidx.room:room-compiler:$roomVersion")
-    androidTestImplementation ("androidx.room:room-testing:$roomVersion")
-
-    // Lifecycle components
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation ("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
-
-    // Kotlin components
-    //implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version")
-    api ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines")
-    api ("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines")
-
-    // UI
-    implementation ("com.google.android.material:material:1.9.0")
-    implementation ("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
-    implementation ("com.google.android.material:material:$materialVersion")
-
-    // Testing
-    testImplementation ("junit:junit:$junitVersion")
-    androidTestImplementation ("androidx.arch.core:core-testing:$coreTestingVersion")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:$espressoVersion")
-    androidTestImplementation( "androidx.test.ext:junit:$androidxJunitVersion")
+    // Room libraries
+    implementation( "androidx.room:room-runtime:$room_version")
+    ksp ("androidx.room:room-compiler:$room_version")
+    implementation ("androidx.room:room-ktx:$room_version")
 }

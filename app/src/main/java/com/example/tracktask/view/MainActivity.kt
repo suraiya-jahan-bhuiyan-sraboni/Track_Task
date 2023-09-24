@@ -1,13 +1,12 @@
 package com.example.tracktask.view
 
-import android.app.Activity
 import android.app.Application
+import androidx.activity.viewModels
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracktask.R
@@ -22,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     private val newTaskActivityRequestCode = 1
     private val taskViewModel: TaskViewModel by viewModels {
@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val task:RecyclerView=findViewById(R.id.taskView)
         task.setBackgroundColor(Color.GREEN)
-        task.layoutManager=LinearLayoutManager(this)
         task.adapter= TaskAdapter()
+        task.layoutManager=LinearLayoutManager(this)
         task.setHasFixedSize(true)
 
         taskViewModel.allTasks.observe(this) { Task ->
@@ -51,10 +51,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
         super.onActivityResult(requestCode, resultCode, intentData)
 
-        if (requestCode == newTaskActivityRequestCode && resultCode == Activity.RESULT_OK) {
+        if (requestCode == newTaskActivityRequestCode && resultCode == RESULT_OK) {
             intentData?.getStringExtra(NewTaskActivity.EXTRA_REPLY)?.let { reply ->
                 val task = Task(0,reply)
                 taskViewModel.insert(task)
@@ -71,8 +72,6 @@ class MainActivity : AppCompatActivity() {
 
 class TaskApplication : Application() {
     val applicationScope= CoroutineScope(SupervisorJob())
-    // Using by lazy so the database and the repository are only created when they're needed
-    // rather than when the application starts
-    val database by lazy { TaskDatabase.getDatabase(this) }
+    val database by lazy { TaskDatabase.getDatabase(this,applicationScope) }
     val repository by lazy { TaskRepo(database.taskDao()) }
 }

@@ -9,7 +9,7 @@ data class Task(
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Task_id")
-    var id: Int =0,
+    val id: Int =0,
     @ColumnInfo(name = "Task_desc")
-    var task: String
+    val task: String
 )
