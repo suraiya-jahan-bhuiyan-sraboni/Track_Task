@@ -3,7 +3,7 @@ package com.example.tracktask.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.CheckBox
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +20,7 @@ class TaskAdapter:ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskComparator()
         holder.bind(current.task)
     }
     class TaskViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val taskItemView:TextView=itemView.findViewById(R.id.checkBox)
+        private val taskItemView:CheckBox=itemView.findViewById(R.id.checkBox)
 
         fun bind(text:String?){
             taskItemView.text=text
