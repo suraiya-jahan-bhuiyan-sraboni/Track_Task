@@ -12,8 +12,9 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:fontFamily="cursive"
-        android:text="Tasks:"
+        android:text="@string/tasks"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#477049"
@@ -34,7 +35,7 @@
         android:background="#FFFFFF"
         android:backgroundTint="#FFFFFF"
         android:nestedScrollingEnabled="true"
-        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
@@ -44,7 +45,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_bias="0.0"
         tools:itemCount="12"
-        tools:listitem="@layout/task_list" />
+        tools:listitem="@layout/task_list"
+        tools:ignore="RtlSymmetry" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_floatingActionButton"
@@ -52,29 +54,32 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="556dp"
         android:clickable="true"
-        android:contentDescription="TODO"
+        android:contentDescription="@string/todo"
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="#3E9142"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.677"
+        android:focusable="true" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/clear_floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:contentDescription="TODO"
-        android:src="@android:drawable/ic_menu_delete"
+        android:contentDescription="@string/todog"
+        android:focusable="true"
+        android:src="@drawable/baseline_delete_forever_24"
         app:backgroundTint="#3E9142"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.848" />
+        app:layout_constraintVertical_bias="0.847"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

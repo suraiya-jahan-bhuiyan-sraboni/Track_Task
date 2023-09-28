@@ -1,6 +1,7 @@
 package com.example.tracktask.view
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Application
 import androidx.activity.viewModels
 import android.content.Intent
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tracktask.R
@@ -60,26 +62,28 @@ class MainActivity : AppCompatActivity() {
         } else {
                     Toast.makeText(
                         applicationContext,
-                        "Failed",
+                        "Closed",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
         }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val task: RecyclerView = findViewById(R.id.taskView)
         task.setBackgroundColor(Color.GREEN)
-        task.adapter =
-            TaskAdapter(clickListener = { selectedItem -> listItemClicked(selectedItem) })
+        task.adapter = TaskAdapter(clickListener = { selectedItem ->
+            listItemClicked(selectedItem)
+        },deleteListener= {selectItem ->
+            deleteListItemClicked(selectItem)
+        }
+        )
         task.layoutManager = LinearLayoutManager(this)
         task.setHasFixedSize(true)
         taskViewModel.allTasks.observe(this) { tasks ->
             // Update the cached copy of the tasks in the adapter.
             (task.adapter as TaskAdapter).submitList(tasks)
-
         }
 
 
@@ -90,13 +94,40 @@ class MainActivity : AppCompatActivity() {
         }
         val fab1 = findViewById<FloatingActionButton>(R.id.clear_floatingActionButton)
         fab1.setOnClickListener {
-            taskViewModel.deleteAllTasks()
-            Toast.makeText(
-                applicationContext,
-                "All tasks cleared",
-                Toast.LENGTH_SHORT
-            ).show()
+            val taskAdapter = task.adapter as TaskAdapter
+            val taskCount = taskAdapter.itemCount
+
+            if (taskCount == 0) {
+                Toast.makeText(
+                    applicationContext,
+                    "No Task Available",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                AlertDialog.Builder(this@MainActivity)
+                    .setTitle("Delete All Tasks")
+                    .setMessage("Are you sure you want to delete all tasks?")
+                    .setPositiveButton("Yes") { _, _ ->
+                        taskViewModel.deleteAllTasks()
+                        Toast.makeText(
+                            applicationContext,
+                            "All tasks deleted",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    .setNegativeButton("No", null)
+                    .show()
+            }
         }
+    }
+
+    private fun deleteListItemClicked(selectItem: Task) {
+        taskViewModel.delete(selectItem)
+        Toast.makeText(
+            applicationContext,
+            "Deleted",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     private fun listItemClicked(task: Task) {

@@ -1,16 +1,8 @@
 <resources>
-    <string name="app_name">Track Task</string>
-    <string name="task1">my first task</string>
-    <string name="task2">my first2 task</string>
-    <string name="task3">my first3 task</string>
-    <string name="task4">my first 4task</string>
-    <string name="task5">my first5 task</string>
-    <string name="task6">my first 6task</string>
-    <string name="task7">my first 7task</string>
-    <string name="task8">my first8 task</string>
-    <string name="task9">my first 9task</string>
-    <string name="task10">my first10 task</string>
-    <string name="task11">my first11 task</string>
-    <string name="task12">my first 12task</string>
+    <string name="app_name">TrackTask</string>
     <string name="this_is_my_first_to_do_on_the_evening">this is my first to do on the evening</string>
+    <string name="todo">TODO</string>
+    <string name="todog">TODO</string>
+    <string name="tasks">Tasks</string>
+    <string name="delete">delete</string>
 </resources>

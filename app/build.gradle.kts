@@ -50,6 +50,8 @@ dependencies {
     val lifecycle_version = "2.6.2"
     val material_version = "1.9.0"
     val room_version = "2.5.2"
+    //splashScreen
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation ("androidx.appcompat:appcompat:$appcompat_version")
@@ -65,4 +67,8 @@ dependencies {
     implementation( "androidx.room:room-runtime:$room_version")
     ksp ("androidx.room:room-compiler:$room_version")
     implementation ("androidx.room:room-ktx:$room_version")
+    //test
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }

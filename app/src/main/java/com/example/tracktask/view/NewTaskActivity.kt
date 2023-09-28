@@ -1,6 +1,5 @@
 package com.example.tracktask.view
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,7 +9,6 @@ import com.example.tracktask.databinding.ActivityNewTaskBinding
 class NewTaskActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewTaskBinding
     private var text=false
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewTaskBinding.inflate(layoutInflater)
