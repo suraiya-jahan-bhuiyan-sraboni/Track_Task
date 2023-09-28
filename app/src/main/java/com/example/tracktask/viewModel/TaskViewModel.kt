@@ -10,6 +10,10 @@ import kotlinx.coroutines.launch
 
 class TaskViewModel(private val repo: TaskRepo):ViewModel() {
     val allTasks:LiveData<List<Task>> = repo.allTasks.asLiveData()
+    fun deleteAllTasks()=viewModelScope.launch {
+            repo.deleteAllTasks()
+        }
+
     fun insert(task: Task)=viewModelScope.launch {
         repo.insert(task)
     }

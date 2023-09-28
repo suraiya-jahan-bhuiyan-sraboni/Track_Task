@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.Flow
 interface TaskDao {
     @Query("select * from Task_table")
     fun getAllTask():Flow<List<Task>>
-
+    @Query("DELETE FROM Task_table")
+    suspend fun deleteAllTasks()
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(task: Task)
     @Update

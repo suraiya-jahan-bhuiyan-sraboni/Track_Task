@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".view.MainActivity">
 
 
@@ -11,9 +12,11 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="cursive"
         android:text="Tasks:"
         android:textAllCaps="true"
-        android:textColor="#2D502F"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#477049"
         android:textSize="34sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,16 +28,17 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskView"
-        android:layout_width="405dp"
-        android:layout_height="577dp"
+        android:layout_width="402dp"
+        android:layout_height="645dp"
         android:layout_marginTop="13dp"
         android:background="#FFFFFF"
         android:backgroundTint="#FFFFFF"
         android:nestedScrollingEnabled="true"
+        android:paddingLeft="15dp"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
 
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
@@ -50,12 +54,27 @@
         android:clickable="true"
         android:contentDescription="TODO"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="#E1A3ED"
+        app:backgroundTint="#3E9142"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.666" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/clear_floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="TODO"
+        android:src="@android:drawable/ic_menu_delete"
+        app:backgroundTint="#3E9142"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.848" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

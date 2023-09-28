@@ -8,6 +8,11 @@ import kotlinx.coroutines.flow.Flow
 class TaskRepo(private val taskDao: TaskDao) {
     val allTasks:Flow<List<Task>> = taskDao.getAllTask()
     @WorkerThread
+    suspend fun deleteAllTasks() {
+        taskDao.deleteAllTasks()
+    }
+
+    @WorkerThread
     suspend fun insert(task: Task){
         taskDao.insert(task)
     }
