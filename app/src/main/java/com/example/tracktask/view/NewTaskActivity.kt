@@ -1,26 +1,63 @@
 package com.example.tracktask.view
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.example.tracktask.databinding.ActivityNewTaskBinding
 
 class NewTaskActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewTaskBinding
     private var text=false
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val taskId = intent.getIntExtra(EXTRA_TASK_ID, -1)
         val taskText = intent.getStringExtra(EXTRA_TASK_TEXT)
+
+        binding.buttonsave2.isVisible=false
 
         if (taskId != -1 && !taskText.isNullOrBlank()) {
             text=true
             // This is an edit operation, so populate the EditText with task text
             binding.editword.setText(taskText)
             binding.buttonsave.text="Update"
+            binding.buttonsave2.isVisible=true
+            //binding.editword.isCursorVisible=false
+            binding.editword.clearFocus()
+            binding.editword.isFocusable=false
+            binding.editword.movementMethod=LinkMovementMethod.getInstance()
+            binding.editword.isContextClickable=true
+        }
+        var flag=true
+        binding.buttonsave2.setOnClickListener{
+            if(flag){
+                binding.editword.apply {
+                    text.toString()
+                    movementMethod=null
+                   // isCursorVisible=true
+                    linksClickable=false
+                    requestFocus()
+                    isFocusable=true
+                    isFocusableInTouchMode=true
+                }
+                binding.buttonsave2.text="Save"
+
+            flag=false
+            } else{
+                binding.buttonsave2.text="Edit"
+                binding.editword.isFocusable=false
+                binding.editword.movementMethod=LinkMovementMethod.getInstance()
+                flag=true
+            }
         }
         binding.buttonsave.setOnClickListener{
             val replyIntent = Intent()

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -42,10 +41,22 @@
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/buttonsave2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/white"
+        android:text="Edit"
+        android:textColor="#FFFCFC"
+        android:textSize="20sp"
+        tools:ignore="TextContrastCheck" />
+
     <EditText
         android:id="@+id/editword"
         android:layout_width="match_parent"
-        android:layout_height="618dp"
+        android:layout_height="585dp"
+        android:autoLink="web|phone"
         android:background="#FFFFFF"
         android:backgroundTint="#1BC0E1C2"
         android:contextClickable="true"
@@ -58,6 +69,7 @@
         android:padding="10dp"
         android:textColor="#404E41"
         android:textColorHint="#3C533D"
+        android:textIsSelectable="true"
         android:textSize="20sp"
         tools:ignore="SpeakableTextPresentCheck" />
 
